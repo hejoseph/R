@@ -15,7 +15,7 @@ df <- as.data.frame(dataCKD)
 #Affichage en pourcentage la frequence des valeurs manquantes pour chaque variable
 pMiss <- function(x){sum(is.na(x))/length(x)*100}
 apply(df,2,pMiss)
-# dfMV<-as.data.frame(md.pattern(df)) 
+dfMV<-as.data.frame(md.pattern(df)) 
 
 
 # Histogramme et Pattern pour les valeurs manquantes
@@ -52,9 +52,9 @@ sum(is.na(df[,factor]))
 df[rowSums(is.na(df))>5,factor]
 
 
-# MC)thode de suppression des invidivus qui ont 40 % de MV
+# Méthode de suppression des invidivus qui ont 40 % de MV
 # manyNAs(df,0.4)
 # df <- df[-manyNAs(df,0.4),]
 
-# Imputation KNN
-df<-knnImputation(df,k=10,meth="median")
+# Imputation FAMD
+df<-knnImputation(df,k=5,meth="median")
